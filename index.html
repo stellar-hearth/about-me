@@ -445,9 +445,15 @@ letter-spacing: 0.08em;
 
   <div class="footer">congrats you found the bottom. there is nothing here. go away</div>
 
-<audio autoplay loop hidden>
+<audio id="bg-music" loop hidden>
   <source src="Prisma Dreamscape.mp3" type="audio/mpeg">
 </audio>
+
+<script>
+  document.addEventListener('click', function() {
+    document.getElementById('bg-music').play();
+  }, { once: true });
+</script>
   
 </div>
 </body>
