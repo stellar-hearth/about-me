@@ -19,12 +19,12 @@
     --border: rgba(255,200,200,0.35);
   }
 
-- { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-font-family: ‘DM Sans’, sans-serif;
-background: var(–cream);
-color: var(–text);
+font-family: 'DM Sans', sans-serif;
+background: var(--cream);
+color: var(--text);
 min-height: 100vh;
 padding: 0 0 60px;
 position: relative;
@@ -33,7 +33,7 @@ overflow-x: hidden;
 
 /* soft blob bg */
 body::before {
-content: ‘’;
+content: '';
 position: fixed;
 top: -120px; left: -120px;
 width: 480px; height: 480px;
@@ -43,7 +43,7 @@ z-index: 0;
 animation: drift 9s ease-in-out infinite alternate;
 }
 body::after {
-content: ‘’;
+content: '';
 position: fixed;
 bottom: -100px; right: -100px;
 width: 400px; height: 400px;
@@ -55,6 +55,75 @@ animation: drift 12s ease-in-out infinite alternate-reverse;
 @keyframes drift {
 from { transform: translate(0,0) scale(1); }
 to   { transform: translate(30px, 20px) scale(1.08); }
+}
+
+/* ── intro screen ── */
+#intro {
+  position: fixed;
+  inset: 0;
+  background: var(--cream);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 14px;
+  transition: opacity 0.6s ease;
+}
+#intro::before {
+  content: '';
+  position: absolute;
+  top: -120px; left: -120px;
+  width: 480px; height: 480px;
+  background: radial-gradient(circle, #f9d6e8cc 0%, transparent 70%);
+  pointer-events: none;
+  animation: drift 9s ease-in-out infinite alternate;
+}
+#intro::after {
+  content: '';
+  position: absolute;
+  bottom: -100px; right: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, #d8e8f9cc 0%, transparent 70%);
+  pointer-events: none;
+  animation: drift 12s ease-in-out infinite alternate-reverse;
+}
+.intro-emoji {
+  font-size: 2.4rem;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.intro-title {
+  font-family: 'Lora', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.intro-hint {
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+.intro-pulse {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #c07070;
+  animation: pulse 1.8s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.4); }
+}
+#intro.fade-out {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .page {
@@ -82,7 +151,7 @@ border-radius: 50%;
 object-fit: cover;
 border: 3px solid white;
 box-shadow: 0 4px 20px rgba(200,140,140,0.25);
-background: linear-gradient(135deg, var(–blush), var(–lilac));
+background: linear-gradient(135deg, var(--blush), var(--lilac));
 display: flex; align-items: center; justify-content: center;
 font-size: 38px;
 }
@@ -96,16 +165,16 @@ animation: spin 18s linear infinite;
 @keyframes spin { to { transform: rotate(360deg); } }
 
 .username {
-font-family: ‘Lora’, serif;
+font-family: 'Lora', serif;
 font-size: 1.7rem;
 font-weight: 600;
 letter-spacing: -0.02em;
-color: var(–text);
+color: var(--text);
 }
 .username em { font-style: italic; font-weight: 400; color: #c07070; }
 .tagline {
 font-size: 0.8rem;
-color: var(–muted);
+color: var(--muted);
 margin-top: 4px;
 letter-spacing: 0.04em;
 }
@@ -113,7 +182,7 @@ letter-spacing: 0.04em;
 display: inline-block;
 margin-top: 8px;
 font-size: 0.72rem;
-background: var(–lilac);
+background: var(--lilac);
 color: #7a5a9e;
 padding: 3px 10px;
 border-radius: 20px;
@@ -122,8 +191,8 @@ letter-spacing: 0.05em;
 
 /* ── bio card ── */
 .card {
-background: var(–card);
-border: 1px solid var(–border);
+background: var(--card);
+border: 1px solid var(--border);
 border-radius: 18px;
 padding: 18px 20px;
 margin-bottom: 12px;
@@ -134,23 +203,23 @@ animation: fadeUp 0.7s ease both;
 font-size: 0.65rem;
 letter-spacing: 0.12em;
 text-transform: uppercase;
-color: var(–muted);
+color: var(--muted);
 margin-bottom: 10px;
 display: flex;
 align-items: center;
 gap: 6px;
 }
 .card-label::after {
-content: ‘’;
+content: '';
 flex: 1;
 height: 1px;
-background: var(–border);
+background: var(--border);
 }
 
 .bio-text {
 font-size: 0.88rem;
 line-height: 1.7;
-color: var(–text);
+color: var(--text);
 }
 
 /* ── now playing / watching / reading ── */
@@ -159,7 +228,7 @@ display: flex;
 align-items: center;
 gap: 12px;
 padding: 10px 0;
-border-bottom: 1px solid var(–border);
+border-bottom: 1px solid var(--border);
 }
 .now-row:last-child { border-bottom: none; padding-bottom: 0; }
 .now-row:first-child { padding-top: 0; }
@@ -183,7 +252,7 @@ text-overflow: ellipsis;
 }
 .now-sub {
 font-size: 0.72rem;
-color: var(–muted);
+color: var(--muted);
 margin-top: 1px;
 }
 .now-badge {
@@ -217,12 +286,12 @@ display: flex; flex-wrap: wrap; gap: 7px;
 font-size: 0.76rem;
 padding: 5px 13px;
 border-radius: 20px;
-background: var(–cream);
-border: 1px solid var(–border);
-color: var(–text);
+background: var(--cream);
+border: 1px solid var(--border);
+color: var(--text);
 transition: background 0.2s;
 }
-.interest-pill:hover { background: var(–blush); }
+.interest-pill:hover { background: var(--blush); }
 
 /* ── BYF / DNF ── */
 .byf-row { display: flex; gap: 8px; margin-bottom: 8px; font-size: 0.83rem; }
@@ -236,20 +305,20 @@ text-transform: uppercase;
 letter-spacing: 0.06em;
 padding-top: 1px;
 }
-.byf-val { color: var(–text); line-height: 1.6; font-size: 0.82rem; }
+.byf-val { color: var(--text); line-height: 1.6; font-size: 0.82rem; }
 
 /* ── social links ── */
 .link-btn {
 display: flex;
 align-items: center;
 gap: 12px;
-background: var(–card);
-border: 1px solid var(–border);
+background: var(--card);
+border: 1px solid var(--border);
 border-radius: 14px;
 padding: 13px 18px;
 margin-bottom: 10px;
 text-decoration: none;
-color: var(–text);
+color: var(--text);
 font-size: 0.88rem;
 font-weight: 500;
 transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
@@ -257,7 +326,7 @@ backdrop-filter: blur(8px);
 animation: fadeUp 0.7s ease both;
 }
 .link-btn:visited, .link-btn:active, .link-btn:focus {
-color: var(–text);
+color: var(--text);
 }
 .link-btn:hover {
 transform: translateY(-2px);
@@ -271,14 +340,14 @@ display: flex; align-items: center; justify-content: center;
 font-size: 16px;
 flex-shrink: 0;
 }
-.link-arrow { margin-left: auto; color: var(–muted); font-size: 0.8rem; }
+.link-arrow { margin-left: auto; color: var(--muted); font-size: 0.8rem; }
 
 /* ── section heading ── */
 .section-title {
-font-family: ‘Lora’, serif;
+font-family: 'Lora', serif;
 font-size: 0.78rem;
 font-style: italic;
-color: var(–muted);
+color: var(--muted);
 text-align: center;
 margin: 20px 0 10px;
 letter-spacing: 0.04em;
@@ -301,7 +370,7 @@ to   { opacity: 1; transform: translateY(0); }
 .footer {
 text-align: center;
 font-size: 0.65rem;
-color: var(–muted);
+color: var(--muted);
 margin-top: 36px;
 letter-spacing: 0.08em;
 }
@@ -309,6 +378,27 @@ letter-spacing: 0.08em;
 
 </head>
 <body>
+
+<!-- Intro Screen -->
+<div id="intro">
+  <div class="intro-emoji">🌸</div>
+  <div class="intro-title">welcome to my little corner</div>
+  <div class="intro-hint">click anywhere to enter</div>
+  <div class="intro-pulse"></div>
+</div>
+
+<audio id="bg-music" loop hidden>
+  <source src="Prisma Dreamscape.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  document.getElementById('intro').addEventListener('click', function() {
+    this.classList.add('fade-out');
+    document.getElementById('bg-music').play();
+    setTimeout(() => this.style.display = 'none', 600);
+  });
+</script>
+
 <div class="page">
 
   <!-- Header -->
@@ -318,7 +408,7 @@ letter-spacing: 0.08em;
       <div class="avatar">🌸</div>
       <div class="avatar-ring"></div>
     </div>
-    <div class="username">lynn<em>!</em></div>
+    <div class="username"><em>!</em></div>
     <div class="tagline">⋆｡𖦹 ˚ welcome to my little corner ˚ 𖦹｡⋆</div>
     <div class="pronouns">they / them</div>
   </div>
@@ -328,8 +418,7 @@ letter-spacing: 0.08em;
   <div class="card">
     <div class="card-label">✦ about me</div>
     <p class="bio-text">
-      perceiving things against my will 🌸 autistic creature ✦ my sleep schedule is a cryptid<br>
-      20 ✦ been to 10 countries and counting 🇨🇦🇮🇹🇨🇳🇮🇳🇳🇴🇧🇪🇳🇱🇩🇰🇯🇵🇬🇧🇹🇷🇮🇸🇰🇷
+     
     </p>
   </div>
 
@@ -341,7 +430,7 @@ letter-spacing: 0.08em;
 <div class="now-row">
   <div class="now-icon music">🎵</div>
   <div class="now-info">
-    <div class="now-title">Bad Bunny</div>
+    <div class="now-title">Yamy</div>
     <div class="now-sub"></div>
   </div>
   <span class="now-badge badge-music">listening</span>
@@ -384,7 +473,7 @@ letter-spacing: 0.08em;
       <div class="tags-wrap">
         <span class="tag hate">early mornings</span>
         <span class="tag hate">slow wifi</span>
-        <span class="tag hate">Ash mains in Apex who AWOL</span>
+        <span class="tag hate">Ash main in Apex who AWOL</span>
       </div>
     </div>
   </div>
@@ -408,7 +497,7 @@ letter-spacing: 0.08em;
   <!-- Values -->
 
   <div class="card">
-    <div class="card-label">✦ i stand with</div>
+    <div class="card-label">i stand with</div>
     <div class="tags-wrap">
       <span class="tag love">🏳️‍🌈 LGBTQIA+</span>
       <span class="tag love">✊ stop Asian hate</span>
@@ -424,10 +513,10 @@ letter-spacing: 0.08em;
 
   <a class="link-btn" href="#" onclick="return false;">
     <div class="link-icon" style="background:linear-gradient(135deg,#fce4d0,#f5c6c6);">🧁</div>
-    my baking blog
+  my baking blog
     <span class="link-arrow">↗</span>
   </a>
-  <a class="link-btn" href="twitter-troll.html" target="_blank">
+  <a class="link-btn" href="" target="_blank">
     <div class="link-icon" style="background:linear-gradient(135deg,#fce4d0,#f5c6c6);">𝕏</div>
     twitter
     <span class="link-arrow">↗</span>
